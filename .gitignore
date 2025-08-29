@@ -1,2 +1,28 @@
+# Python-specific ignores
+*.pyc
+*.pyo
+*.pyd
+__pycache__
+*.db
+*.sqlite3
+*.log
+
+# Django-specific ignores
+*.log
+*.pot
+*.pyc
+*.pyo
+__pycache__
+db.sqlite3
+*.sqlite3
+*.log
+
+# Django migration files
+*/migrations/__pycache__
+*/migrations/00*.py
+
+# Virtual environment
 venv/
-***/__pycache__/
+env/
+ENV/
+.venv/

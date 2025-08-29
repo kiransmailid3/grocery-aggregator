@@ -2,36 +2,35 @@ import requests
 from bs4 import BeautifulSoup
 
 BASE_URL = "https://www.willys.se"
-OFFER_URL = BASE_URL + "/erbjudanden/ehandel"
 
-def fetch_products(limit=5):
-    print("Fetching products.....")
-    resp = requests.get(OFFER_URL, timeout=10)
+def fetch_products(product_name: str, city: str, limit: int = 5):
+    """
+    Fetch products from Willys with given product name and city/pincode.
+    Currently searches the 'erbjudanden' page as placeholder.
+    """
+    print(f"Fetching products... {product_name} in {city}")
+    url = BASE_URL + "/erbjudanden/ehandel"
+    resp = requests.get(url, timeout=10)
     resp.raise_for_status()
     soup = BeautifulSoup(resp.text, 'html.parser')
 
     products = []
-    # This selector might need adjusting depending on actual markup
-    items = soup.select(".product-list-item")  # hypothetical CSS class
+    items = soup.select(".product-list-item")  # TODO: refine selector
 
     for item in items[:limit]:
         title_el = item.select_one(".product-title")
         price_el = item.select_one(".product-price")
-        compare_el = item.select_one(".product-compare-price")
-        link_el = item.select_one("a")
+
+        title = title_el.get_text(strip=True) if title_el else "—"
+        if product_name.lower() not in title.lower():
+            continue  # filter by product name
 
         product = {
-            "name": title_el.get_text(strip=True) if title_el else "—",
+            "name": title,
             "price": price_el.get_text(strip=True) if price_el else "—",
-            "compare_price": compare_el.get_text(strip=True) if compare_el else None,
-            "url": BASE_URL + link_el["href"] if link_el and link_el.get("href") else None,
+            "city": city,
         }
         products.append(product)
-    
-    print(f"Fetched below products: \n {products}")
 
+    print(f"Fetched products: \n {products}")
     return products
-
-if __name__ == "__main__":
-    for prod in fetch_products():
-        print(prod)
