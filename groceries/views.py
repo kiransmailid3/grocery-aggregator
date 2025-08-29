@@ -16,9 +16,20 @@ class ItemListView(generics.ListAPIView):
 
 
 def product_search(request):
+    """Renders the form page only."""
+    return render(request, "groceries/product_search.html")
+
+def product_results(request):
+    """Handles the search and renders results page."""
+    product_name = request.GET.get("product_name")
+    city = request.GET.get("city")
     products = None
-    if request.method == "POST":
-        product_name = request.POST.get("product_name")
-        city = request.POST.get("city")
+
+    if product_name and city:
         products = fetch_products(product_name, city)
-    return render(request, "groceries/product_search.html", {"products": products})
+
+    return render(request, "groceries/product_results.html", {
+        "product_name": product_name,
+        "city": city,
+        "products": products
+    })

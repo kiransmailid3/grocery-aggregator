@@ -32,5 +32,8 @@ def fetch_products(product_name: str, city: str, limit: int = 5):
         }
         products.append(product)
 
+    # for testing
+    products = [{"name": "Cake", "price": 100, "city": "Karlstad"}]
+
     print(f"Fetched products: \n {products}")
     return products

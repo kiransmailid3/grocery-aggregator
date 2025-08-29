@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Grocery Search</title>
+    <title>Search Grocery Product</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="container mt-5">
     <h2>Search Grocery Product</h2>
-    <form method="POST" class="mb-4">
-        {% csrf_token %}
+    <form method="GET" action="{% url 'product-results' %}" class="mb-4">
         <div class="mb-3">
             <label class="form-label">Product Name</label>
             <input type="text" name="product_name" class="form-control" placeholder="e.g. Tomatoes" required>
@@ -18,18 +17,5 @@
         </div>
         <button type="submit" class="btn btn-primary">Search</button>
     </form>
-
-    {% if products %}
-        <h3>Search Results</h3>
-        <ul class="list-group">
-            {% for product in products %}
-                <li class="list-group-item">
-                    <strong>{{ product.name }}</strong><br>
-                    Price: {{ product.price }}<br>
-                    City: {{ product.city }}
-                </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
 </body>
 </html>
