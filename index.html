@@ -1,11 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Grocery Aggregator MVP</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Grocery Aggregator (Static MVP)</title>
+  <style>
+    body { font-family: system-ui, Arial, sans-serif; max-width: 780px; margin: 40px auto; padding: 16px; }
+    input, button { font-size: 16px; }
+    button { padding: 10px 16px; }
+    .muted { color: #666; font-size: 14px; }
+  </style>
 </head>
 <body>
-  <h1>Grocery Aggregator</h1>
-  <pre id="output"></pre>
+  <h1>Grocery Aggregator — Cheapest Plan</h1>
+  <p>Enter items (comma-separated). We’ll compute the cheapest shop per item using <code>shops.json</code>.</p>
+
+  <form id="form" style="margin: 16px 0 24px;">
+    <label for="items" style="display:block; margin-bottom:8px;">Items</label>
+    <input id="items" name="items" placeholder="tomato, apple, bread" style="width:100%; padding:10px;" />
+    <button type="submit" style="margin-top:12px;">Find Cheapest</button>
+    <span id="status" class="muted" style="margin-left:8px;"></span>
+  </form>
+
+  <div id="results"></div>
+
+  <hr style="margin:24px 0;" />
+  <p class="muted">
+    Data source: <code>shops.json</code> in this repo. Keep item keys in lowercase (e.g., <code>tomato</code>, <code>milk</code>).
+  </p>
 
   <script src="plan.js"></script>
 </body>
