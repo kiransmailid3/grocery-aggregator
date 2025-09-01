@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Willys",
+    "base": "willys",
+    "products": {
+      "tomato": "https://www.willys.se/produkt/Kvisttomat-Import-Klass-1-100152282_KG",
+      "milk": "https://www.willys.se/produkt/mjolk-0001/"
+    }
+  },
+  {
+    "name": "Coop",
+    "base": "coop",
+    "products": {
+      "tomato": "https://www.coop.se/handla/varor/frukt-gronsaker/gronsaker/tomat/tomater-2097480600002",
+      "milk": "https://www.coop.se/handla/produkt/mjolk-2222/"
+    }
+  }
+]
