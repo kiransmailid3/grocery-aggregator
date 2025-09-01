@@ -1,0 +1,9 @@
+{
+  "name": "grocery-aggregator",
+  "version": "1.0.0",
+  "private": true,
+  "engines": { "node": "18.x" },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12"
+  }
+}
