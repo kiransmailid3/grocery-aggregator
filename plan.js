@@ -12,14 +12,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       // Load shop data from the same origin (no CORS issues)
-      const res = await fetch("shops.json", { cache: "no-store" });
-      if (!res.ok) throw new Error("Failed to load shops.json");
-      const shops = await res.json();
+      // const res = await fetch("shops.json", { cache: "no-store" });
+      // if (!res.ok) throw new Error("Failed to load shops.json");
+      // const shops = await res.json();
       // fetch real-time prices from serverless endpoint
-      // const apiRes = await fetch("/api/prices", { cache: "no-store" });
-      // if (!apiRes.ok) throw new Error("Failed to fetch live prices");
-      // const apiJson = await apiRes.json();
-      // const shops = apiJson.shops || [];
+      const apiRes = await fetch("/api/prices", { cache: "no-store" });
+      if (!apiRes.ok) throw new Error("Failed to fetch live prices");
+      const apiJson = await apiRes.json();
+      const shops = apiJson.shops || [];
 
       // Parse items
       const items = String(itemsInput.value || "")
